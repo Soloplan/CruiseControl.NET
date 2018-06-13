@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace ThoughtWorks.CruiseControl.Remote
 {
-    /// <summary>
+  using System.Net;
+
+  /// <summary>
     /// Factory class for building <see cref="CruiseServerClientBase"/> instances.
     /// </summary>
     public class CruiseServerClientFactory 
@@ -23,6 +25,7 @@ namespace ThoughtWorks.CruiseControl.Remote
             // Add the initial initialisers
             InitialiseDefaultTcpClient();
             InitialiseDefaultHttpClient();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
             UseClientCaching = true;
         }
         #endregion
